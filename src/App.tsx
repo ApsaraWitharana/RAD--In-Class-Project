@@ -92,47 +92,66 @@
 //
 // export default App;
 
-// task 02
-import { useState } from 'react';
-import SmallButtonComponent from './component/ButtonComponent';
+// // task 02
+// import './App.css'
+// import { useState } from 'react';
+// import SmallButtonComponent from './component/ButtonComponent';
+// const App = () => {
+//     const subjectDes = [
+//         {
+//             sName: 'JavaScript',
+//             sDic: 'Lorem Ipsum JavaScript.'
+//         },
+//         {
+//             sName: 'TypeScript',
+//             sDic: 'It is a TypeScript.'
+//         },
+//         {
+//             sName: 'RAD',
+//             sDic: 'It is a RAD.'
+//         }
+//     ];
+// const [content,setContent] = useState('default');
+//     const handleClick = (name: string) => {
+//         let desc;
+//         subjectDes.map((subject) =>{
+//             if (subject.sName === name) {
+//                 desc = subject.sDic;
+//             }
+//         })
+//         setContent(name);
+//         alert(desc);
+//     }
+//     return (
+//         // <div>
+//         //     {/*{subjectDes.map((subject) => {*/}
+//         //     {/*    return <SmallButtonComponent onSelect={handleClick}>{subject.sName}</SmallButtonComponent>*/}
+//         //     {/*} )}*/}
+//         // </div>
+//         <>
+//         <SmallButtonComponent onSelect={handleClick}>{subjectDes[0].sName}</SmallButtonComponent>
+//         <SmallButtonComponent onSelect={handleClick}>{subjectDes[1].sName}</SmallButtonComponent>
+//         <SmallButtonComponent onSelect={handleClick}>{subjectDes[2].sName}</SmallButtonComponent>
+//           <br/>
+//             {content}
+//         </>
+//     );
+// };
+//
+// export default App;
+
+
+// task 04
+ import './App.css'
+import {useState} from "react";
+
 const App = () => {
-    const subjectDes = [
-        {
-            sName: 'JavaScript',
-            sDic: 'Lorem Ipsum JavaScript.'
-        },
-        {
-            sName: 'TypeScript',
-            sDic: 'It is a TypeScript.'
-        },
-        {
-            sName: 'RAD',
-            sDic: 'It is a RAD.'
-        }
-    ];
-const [content,setContent] = useState('default');
-    const handleClick = (name: string) => {
-        let desc;
-        subjectDes.map((subject) =>{
-            if (subject.sName === name) {
-                desc = subject.sDic;
-            }
-        })
-        setContent(name);
-        alert(desc);
-    }
+    const [count, setCount] = useState(0);
     return (
-        // <div>
-        //     {/*{subjectDes.map((subject) => {*/}
-        //     {/*    return <SmallButtonComponent onSelect={handleClick}>{subject.sName}</SmallButtonComponent>*/}
-        //     {/*} )}*/}
-        // </div>
         <>
-        <SmallButtonComponent onSelect={handleClick}>{subjectDes[0].sName}</SmallButtonComponent>
-        <SmallButtonComponent onSelect={handleClick}>{subjectDes[1].sName}</SmallButtonComponent>
-        <SmallButtonComponent onSelect={handleClick}>{subjectDes[2].sName}</SmallButtonComponent>
-          <br/>
-            {content}
+            {count} <br/>
+            <button onClick={() => setCount(count + 1)}>Add</button>
+            <button onClick={() => setCount(count - 1)}>Delete</button>
         </>
     );
 };
