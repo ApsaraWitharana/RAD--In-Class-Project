@@ -59,20 +59,31 @@
 
 
 import './App.css';
-import Subject from './component/Subject';
+import SmallButtonComponent from "./component/ButtonComponent.tsx";
+// import Subject from './component/Subject';
 function App() {
+    // return (
+        // <div style={{ padding: '20px' }}>
+        //     <Subject name="RAD">
+        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        //     </Subject>
+        //     <Subject name="MAD">
+        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        //     </Subject>
+        //     <Subject name="OOP">
+        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        //     </Subject>
+        // </div>
+
+     const handleClick =(name:string)=>{
+                alert(name+'Click');
+            }
     return (
-        <div style={{ padding: '20px' }}>
-            <Subject name="RAD">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </Subject>
-            <Subject name="MAD">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </Subject>
-            <Subject name="OOP">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            </Subject>
-        </div>
+        <>
+            <SmallButtonComponent onSelect={handleClick}>Dashboard</SmallButtonComponent>
+            <SmallButtonComponent onSelect={handleClick}>Add Customer</SmallButtonComponent>
+            <SmallButtonComponent onSelect={handleClick}>Delete Customer</SmallButtonComponent>
+        </>
     );
 }
 
