@@ -141,17 +141,37 @@
 // export default App;
 
 
-// task 04
- import './App.css'
-import {useState} from "react";
+// // task 04
+//  import './App.css'
+// import {useState} from "react";
+//
+// const App = () => {
+//     const [count, setCount] = useState(0);
+//     return (
+//         <>
+//             {count} <br/>
+//             <button onClick={() => setCount(count + 1)}>Add</button>
+//             <button onClick={() => setCount(count - 1)}>Delete</button>
+//         </>
+//     );
+// };
+//
+// export default App;
+
+
+// task 05
+import { useState } from 'react';
+import './App.css'
+import ButtonComponent from "./component/ButtonComponent.tsx";
 
 const App = () => {
     const [count, setCount] = useState(0);
+
     return (
         <>
             {count} <br/>
-            <button onClick={() => setCount(count + 1)}>Add</button>
-            <button onClick={() => setCount(count - 1)}>Delete</button>
+            <ButtonComponent count={count} onClick={setCount}>Add</ButtonComponent>
+            <ButtonComponent count={count} onClick={setCount}>Delete</ButtonComponent>
         </>
     );
 };
