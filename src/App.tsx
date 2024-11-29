@@ -1,31 +1,45 @@
 
 import './App.css'
+import {Dashboard} from "./component/Dashboard.tsx";
+import {Login} from "./component/Login.tsx";
 import SmallButtonComponent from "./component/ButtonComponent.tsx";
-import {Item} from "./component/Item.tsx";
-import {itemList} from "./item.ts";
+// import SmallButtonComponent from "./component/ButtonComponent.tsx";
+// import {Item} from "./component/Item.tsx";
+
+
+// import {itemList} from "./item.ts";
 function App() {
 
-    // set item to the list
-    const  itemArray =[];
-    for (const item of itemList) {
-        itemArray.push(<Item title={item.title} description={item.description}></Item>);
+    // // set item to the list
+    // const  itemArray =[];
+    // for (const item of itemList) {
+    //     itemArray.push(<Item title={item.title} description={item.description}></Item>);
+    // }
+    const  isLoggedIn = false;
+    let content;
+    if (isLoggedIn) {
+        content =<Dashboard/>
+    }else {
+        content = <Login/>
     }
   return (
       <>
-          <SmallButtonComponent name='Add'></SmallButtonComponent>
-          <SmallButtonComponent name='Update'></SmallButtonComponent>
-          <SmallButtonComponent name='Delete'></SmallButtonComponent>
 
-          {/*map item list*/}
-          {/*{itemList.map((item, index) => (*/}
-          {/*    <Item key={index} title={item.title} description={item.description} />*/}
-          {/*))}*/}
+          <SmallButtonComponent children='Add'></SmallButtonComponent>
+          <SmallButtonComponent children='Update'></SmallButtonComponent>
+          <SmallButtonComponent children='Delete'></SmallButtonComponent>
 
-          {/*<Item title ={itemList[0].title} description ={itemList[0].description}></Item>*/}
-          {/*<Item title ={itemList[1].title} description ={itemList[1].description}></Item>*/}
-          {/*<Item title ={itemList[2].title} description ={itemList[2].description}></Item>*/}
+          {/*/!*map item list*!/*/}
+          {/*/!*{itemList.map((item, index) => (*!/*/}
+          {/*/!*    <Item key={index} title={item.title} description={item.description} />*!/*/}
+          {/*/!*))}*!/*/}
 
-          {itemArray}
+          {/*/!*<Item title ={itemList[0].title} description ={itemList[0].description}></Item>*!/*/}
+          {/*/!*<Item title ={itemList[1].title} description ={itemList[1].description}></Item>*!/*/}
+          {/*/!*<Item title ={itemList[2].title} description ={itemList[2].description}></Item>*!/*/}
+
+          {/*{itemArray}*/}
+          {content}
       </>
   )
 }
