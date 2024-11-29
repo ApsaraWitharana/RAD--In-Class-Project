@@ -58,33 +58,83 @@
 // export default App
 
 
-import './App.css';
-import SmallButtonComponent from "./component/ButtonComponent.tsx";
-// import Subject from './component/Subject';
-function App() {
-    // return (
-        // <div style={{ padding: '20px' }}>
-        //     <Subject name="RAD">
-        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        //     </Subject>
-        //     <Subject name="MAD">
-        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        //     </Subject>
-        //     <Subject name="OOP">
-        //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        //     </Subject>
-        // </div>
+// import './App.css';
+// import SmallButtonComponent from "./component/ButtonComponent.tsx";
+// // import Subject from './component/Subject';
+// function App() {
+//     // return (
+//         // <div style={{ padding: '20px' }}>
+//         //     <Subject name="RAD">
+//         //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+//         //     </Subject>
+//         //     <Subject name="MAD">
+//         //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+//         //     </Subject>
+//         //     <Subject name="OOP">
+//         //         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+//         //     </Subject>
+//         // </div>
+//
+//      const handleClick =(name:string)=>{
+//                 alert(name+'Click');
+//             }
+//
+//     return (
+//         <>
+//             <SmallButtonComponent onSelect={handleClick}>Dashboard</SmallButtonComponent>
+//             <SmallButtonComponent onSelect={handleClick}>Add Customer</SmallButtonComponent>
+//             <SmallButtonComponent onSelect={handleClick}>Delete Customer</SmallButtonComponent>
+//         </>
+//
+//
+//     );
+// }
+//
+// export default App;
 
-     const handleClick =(name:string)=>{
-                alert(name+'Click');
+// task 02
+import { useState } from 'react';
+import SmallButtonComponent from './component/ButtonComponent';
+const App = () => {
+    const subjectDes = [
+        {
+            sName: 'JavaScript',
+            sDic: 'Lorem Ipsum JavaScript.'
+        },
+        {
+            sName: 'TypeScript',
+            sDic: 'It is a TypeScript.'
+        },
+        {
+            sName: 'RAD',
+            sDic: 'It is a RAD.'
+        }
+    ];
+const [content,setContent] = useState('default');
+    const handleClick = (name: string) => {
+        let desc;
+        subjectDes.map((subject) =>{
+            if (subject.sName === name) {
+                desc = subject.sDic;
             }
+        })
+        setContent(name);
+        alert(desc);
+    }
     return (
+        // <div>
+        //     {/*{subjectDes.map((subject) => {*/}
+        //     {/*    return <SmallButtonComponent onSelect={handleClick}>{subject.sName}</SmallButtonComponent>*/}
+        //     {/*} )}*/}
+        // </div>
         <>
-            <SmallButtonComponent onSelect={handleClick}>Dashboard</SmallButtonComponent>
-            <SmallButtonComponent onSelect={handleClick}>Add Customer</SmallButtonComponent>
-            <SmallButtonComponent onSelect={handleClick}>Delete Customer</SmallButtonComponent>
+        <SmallButtonComponent onSelect={handleClick}>{subjectDes[0].sName}</SmallButtonComponent>
+        <SmallButtonComponent onSelect={handleClick}>{subjectDes[1].sName}</SmallButtonComponent>
+        <SmallButtonComponent onSelect={handleClick}>{subjectDes[2].sName}</SmallButtonComponent>
+          <br/>
+            {content}
         </>
     );
-}
+};
 
 export default App;

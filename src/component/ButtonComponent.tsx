@@ -31,13 +31,23 @@
 //     )
 // }
 
+// // alert to click button
+// export default function SmallButtonComponent(props:{children:React.ReactNode,onSelect:any}) {
+//
+//     return (
+//         <>
+//             <button onClick ={() =>{props.onSelect(props.children)}}>{props.children}</button>
+//         </>
+//
+//     )
+// }
+
+//
+
 // alert to click button
+
 export default function SmallButtonComponent(props:{children:React.ReactNode,onSelect:any}) {
-
     return (
-        <>
-            <button onClick ={() =>{props.onSelect(props.children)}}>{props.children}</button>
-        </>
-
-    )
+           <button onClick={()=>(props.onSelect(props.children))}>{props.children}</button>
+    );
 }
