@@ -160,20 +160,187 @@
 
 
 // task 05
-import { useState } from 'react';
-import './App.css'
-import ButtonComponent from "./component/ButtonComponent.tsx";
+// import { useState } from 'react';
+// import './App.css'
+// import ButtonComponent from "./component/ButtonComponent.tsx";
+//
+// const App = () => {
+//     const [count, setCount] = useState(0);
+//
+//     return (
+//         <>
+//             {count} <br/>
+//             <ButtonComponent count={count} onClick={setCount}>Add</ButtonComponent>
+//             <ButtonComponent count={count} onClick={setCount}>Delete</ButtonComponent>
+//         </>
+//     );
+// };
+//
+// export default App;
 
-const App = () => {
-    const [count, setCount] = useState(0);
+// task -06 - 2024/06/12
+// import { ChangeEvent, useState } from 'react';
+// import './App.css';
+//
+// const App = () => {
+//     const [userData, setUserData] = useState({
+//         firstName: '',
+//         lastName: '',
+//     });
+//
+//     function handleEvent(event: ChangeEvent<HTMLInputElement>) {
+//         const { name, value } = event.target;
+//
+//         setUserData({
+//             ...userData,
+//             [name]: value,
+//         });
+//     }
+//
+//     return (
+//         <>
+//             <input type="text" name="firstName" placeholder="First Name" onChange={handleEvent}
+//             />
+//             <input type="text" name="lastName" placeholder="Last Name" onChange={handleEvent}
+//             />
+//             <p>
+//                 Hello: {userData.firstName} {userData.lastName}
+//             </p>
+//         </>
+//     );
+// };
+//
+// export default App;
+
+// import { ChangeEvent, useState } from 'react';
+// import './App.css';
+//
+// const App = () => {
+//     const [userData, setUserData] = useState({
+//         firstName: '',
+//         lastName: '',
+//     });
+//     const [firstName,setFirstName] = useState({
+//     firstName: '',
+//     });
+//     const [lastName,setLastName] = useState({
+//     lastName: '',
+//     });
+//
+//     function handleEvent() {
+//         setUserData({
+//             ...userData,
+//             firstName: firstName,
+//             lastName: lastName,
+//         });
+//     }
+//
+//     return (
+//         <>
+//             <input type="text" name="firstName" placeholder="First Name" onChange={e => setFirstName({ e.target.value })} />
+//             <input type="text" name="lastName" placeholder="Last Name" onChange={e => setLastName({  e.target.value })} />
+//             <button onClick={handleEvent}>Set Name</button>
+//             <p>
+//                 Hello: {userData.firstName} {userData.lastName}
+//             </p>
+//         </>
+//     );
+// };
+//
+// export default App;
+
+
+// import { ChangeEvent, useState } from 'react';
+// import './App.css';
+// import {Customer} from "./model/Customer.ts";
+//
+// function App() {
+//     const []
+//     const [customers,setCustomers] = useState<Customer[]>([]);
+//     const[name,setName] = useState("");
+//     const[address,setAddress] = useState("");
+//     const[phone,setPhone] = useState("");
+//     const[email,setEmail] = useState("");
+//
+//     function addCustomers() {
+//         const newCustomers = new Customer(name, address, email, phone);
+//         setCustomers((customers) => [...customers,newCustomers]);
+//     }
+//
+//     return (
+//         <>
+//             <input name='Name' type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}/>
+//             <input name='Address' type="text" placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
+//             <input name='Email' type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
+//             <input name='Phone' type="text" placeholder='Phone' onChange={(e) => setPhone(e.target.value)}/>
+//
+//             <button onClick={addCustomers}>Add Customer</button>
+//
+//             {customers.map((customer) => (
+//
+//                 <div>
+//                     {customer.name+" "+customer.address+" "+customer.email+""+customer.phone}
+//                 </div>
+//             ))}
+//
+//
+//         </>
+//     )
+// }
+//
+// export default App
+
+// All crud
+import { ChangeEvent, useState } from 'react';
+import './App.css';
+import {Customer} from "./model/Customer.ts";
+
+function App() {
+    const [customers,setCustomers] = useState<Customer[]>([]);
+    const[name,setName] = useState("");
+    const[address,setAddress] = useState("");
+    const[phone,setPhone] = useState("");
+    const[email,setEmail] = useState("");
+
+    function addCustomers() {
+        const newCustomers = new Customer(name, address, email, phone);
+        setCustomers((customers) => [...customers,newCustomers]);
+    }
+
+    // object array ekk hdl ek set krnw -object arry eke antima arry ek natuw ithuru tik return krnw
+    function deleteCustomers() {
+        setCustomers((customers) => customers.slice(0,-1));
+    }
+
+    function deleteByEmail() {
+        setCustomers((customers) => customers.filter((customer) => customer.email !== email));
+    }
+
+    function updateCustomers() {
+        setCustomers((customers) => customers.map((customer) => customer.email === email?{...customers,name:name,address:address,phone:phone,email:email}:customer));
+    }
 
     return (
         <>
-            {count} <br/>
-            <ButtonComponent count={count} onClick={setCount}>Add</ButtonComponent>
-            <ButtonComponent count={count} onClick={setCount}>Delete</ButtonComponent>
-        </>
-    );
-};
+            <input name='Name' type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}/>
+            <input name='Address' type="text" placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
+            <input name='Email' type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
+            <input name='Phone' type="text" placeholder='Phone' onChange={(e) => setPhone(e.target.value)}/>
 
-export default App;
+            <button onClick={addCustomers}>Add</button>
+            <button onClick={deleteCustomers}>Delete</button>
+            <button onClick={deleteByEmail}>Delete by Email</button>
+            <button onClick={updateCustomers}>Update Customer</button>
+
+            {customers.map((customer) => (
+                <div key={customer.email}>
+                    {customer.name} {customer.address} {customer.email} {customer.phone}
+                </div>
+            ))}
+
+
+        </>
+    )
+}
+
+export default App
