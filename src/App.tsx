@@ -290,57 +290,207 @@
 //
 // export default App
 
-// All crud
-import { ChangeEvent, useState } from 'react';
-import './App.css';
-import {Customer} from "./model/Customer.ts";
+// // All crud
+// import {ChangeEvent, useState } from 'react';
+// import './App.css';
+// import {Customer} from "./model/Customer.ts";
+//
+// function App() {
+//     const [customers,setCustomers] = useState<Customer[]>([]);
+//     const[name,setName] = useState("");
+//     const[address,setAddress] = useState("");
+//     const[phone,setPhone] = useState("");
+//     const[email,setEmail] = useState("");
+//
+//     function addCustomers() {
+//         const newCustomers = new Customer(name, address, email, phone);
+//         setCustomers((customers) => [...customers,newCustomers]);
+//     }
+//
+//     // object array ekk hdl ek set krnw - object array eke antima array ek natuw ithuru tik return krnw
+//     function deleteCustomers() {
+//         setCustomers((customers) => customers.slice(0,-1));
+//     }
+//
+//     function deleteByEmail() {
+//         setCustomers((customers) => customers.filter((customer) => customer.email !== email));
+//     }
+//
+//     function updateCustomers() {
+//         setCustomers((customers) => customers.map((customer) => customer.email === email?{...customers,name:name,address:address,phone:phone,email:email}:customer));
+//     }
+//
+//     return (
+//         <>
+//             <p>Customer Management</p>
+//             <input name='Name' type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}/>
+//             <input name='Address' type="text" placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
+//             <input name='Email' type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
+//             <input name='Phone' type="text" placeholder='Phone' onChange={(e) => setPhone(e.target.value)}/>
+//                 <br/>
+//             <button onClick={addCustomers}>Add</button>
+//             <button onClick={deleteCustomers}>Delete</button>
+//             <button onClick={deleteByEmail}>Delete by Email</button>
+//             <button onClick={updateCustomers}>Update Customer</button>
+//
+//             {customers.map((customer) => (
+//                 <div key={customer.email}>
+//                     {customer.name} {customer.address} {customer.email} {customer.phone}
+//                 </div>
+//             ))}
+//
+//
+//         </>
+//     )
+// }
+//
+// export default App
+//
+// // import { useState } from 'react';
+// import './App.css';
+// import { Item } from "./model/Item.ts";
+//
+// function App() {
+//     const [items, setItems] = useState<Item[]>([]);
+//     const [name, setName] = useState("");
+//     const [price, setPrice] = useState("");
+//     const [qty, setQty] = useState("");
+//     const [editIndex, setEditIndex] = useState<number | null>(null);
+//
+//     // Add a new item
+//     function addItem() {
+//         if (!name || !price || !qty) {
+//             alert("Please fill in all fields!");
+//             return;
+//         }
+//
+//         const newItem = new Item(name, price, qty);
+//
+//         if (editIndex !== null) {
+//             // Update existing item
+//             const updatedItems = [...items];
+//             updatedItems[editIndex] = newItem;
+//             setItems(updatedItems);
+//             setEditIndex(null); // Reset edit mode
+//         } else {
+//             // Add new item
+//             setItems((items) => [...items, newItem]);
+//         }
+//
+//         // Clear the input fields
+//         setName("");
+//         setPrice("");
+//         setQty("");
+//     }
+//
+//     // Delete an item
+//     function deleteItem(index: number) {
+//         setItems((items) => items.filter((_, i) => i !== index));
+//     }
+//
+//     // Edit an item
+//     function editItem(index: number) {
+//         const item = items[index];
+//         setName(item.name);
+//         setPrice(item.price);
+//         setQty(item.qty);
+//         setEditIndex(index);
+//     }
+//
+//     return (
+//         <div className="App">
+//             <h1>Item Management</h1>
+//             <div>
+//                 <input
+//                     name="Name"
+//                     type="text"
+//                     placeholder="Name"
+//                     value={name}
+//                     onChange={(e) => setName(e.target.value)}
+//                 />
+//                 <input
+//                     name="Price"
+//                     type="text"
+//                     placeholder="Price"
+//                     value={price}
+//                     onChange={(e) => setPrice(e.target.value)}
+//                 />
+//                 <input
+//                     name="Qty"
+//                     type="text"
+//                     placeholder="Quantity"
+//                     value={qty}
+//                     onChange={(e) => setQty(e.target.value)}
+//                 />
+//                 <br />
+//                 <button onClick={addItem}>
+//                     {editIndex !== null ? "Update Item" : "Add Item"}
+//                 </button>
+//             </div>
+//             <br />
+//             <table border="1">
+//                 <thead>
+//                 <tr>
+//                     <th>Name</th>
+//                     <th>Price</th>
+//                     <th>Quantity</th>
+//                     <th>Actions</th>
+//                 </tr>
+//                 </thead>
+//                 <tbody>
+//                 {items.map((item, index) => (
+//                     <tr key={index}>
+//                         <td>{item.name}</td>
+//                         <td>{item.price}</td>
+//                         <td>{item.qty}</td>
+//                         <td>
+//                             <button onClick={() => editItem(index)}>Edit</button>
+//                             <button onClick={() => deleteItem(index)}>Delete</button>
+//                         </td>
+//                     </tr>
+//                 ))}
+//                 </tbody>
+//             </table>
+//         </div>
+//     );
+// }
+//
+// export default App;
+
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import { Dashboard } from "./pages/Dashboard";
+import { Error } from "./pages/Error";
+import { AddCustomer } from "./pages/AddCustomer";
+import { UpdateCustomer } from "./pages/UpdateCustomer";
+import { DeleteCustomer } from "./pages/DeleteCustomer";
+import { RootLayout } from "./component/RootLayout";
+import { CustomerProvider } from "./component/CustomerProvider";
 
 function App() {
-    const [customers,setCustomers] = useState<Customer[]>([]);
-    const[name,setName] = useState("");
-    const[address,setAddress] = useState("");
-    const[phone,setPhone] = useState("");
-    const[email,setEmail] = useState("");
-
-    function addCustomers() {
-        const newCustomers = new Customer(name, address, email, phone);
-        setCustomers((customers) => [...customers,newCustomers]);
-    }
-
-    // object array ekk hdl ek set krnw -object arry eke antima arry ek natuw ithuru tik return krnw
-    function deleteCustomers() {
-        setCustomers((customers) => customers.slice(0,-1));
-    }
-
-    function deleteByEmail() {
-        setCustomers((customers) => customers.filter((customer) => customer.email !== email));
-    }
-
-    function updateCustomers() {
-        setCustomers((customers) => customers.map((customer) => customer.email === email?{...customers,name:name,address:address,phone:phone,email:email}:customer));
-    }
+    const routes = createBrowserRouter([
+        {
+            path: "/",
+            element: <RootLayout />,
+            children: [
+                { path: "/", element: <Dashboard /> },
+                { path: "/add", element: <AddCustomer /> },
+                { path: "/update", element: <UpdateCustomer /> },
+                { path: "/delete", element: <DeleteCustomer /> },
+            ],
+            errorElement: <Error />,
+        },
+        {
+            path: "*",
+            element: <Error />,
+        },
+    ]);
 
     return (
-        <>
-            <input name='Name' type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}/>
-            <input name='Address' type="text" placeholder='Address' onChange={(e) => setAddress(e.target.value)}/>
-            <input name='Email' type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}/>
-            <input name='Phone' type="text" placeholder='Phone' onChange={(e) => setPhone(e.target.value)}/>
-
-            <button onClick={addCustomers}>Add</button>
-            <button onClick={deleteCustomers}>Delete</button>
-            <button onClick={deleteByEmail}>Delete by Email</button>
-            <button onClick={updateCustomers}>Update Customer</button>
-
-            {customers.map((customer) => (
-                <div key={customer.email}>
-                    {customer.name} {customer.address} {customer.email} {customer.phone}
-                </div>
-            ))}
-
-
-        </>
-    )
+        <CustomerProvider>
+            <RouterProvider router={routes} />
+        </CustomerProvider>
+    );
 }
 
-export default App
+export default App;
