@@ -14,8 +14,29 @@ export function Dashboard() {
         <div>
             <h1>Welcome to the Dashboard</h1>
             <p>This is your personalized dashboard.</p>
-            {customers.map((customer: Customer) => (<div key={customer.email}>{customer.name + ' '+customer.address + ' '+ customer.email + ' '+ customer.phone }</div>))}
+            {customers.map((customer: Customer) => (<div
+                key={customer.email}>{customer.name + ' ' + customer.address + ' ' + customer.email + ' ' + customer.phone}</div>))}
+            <table border={1} cellPadding="8" style={{marginTop: "20px"}}>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                </thead>
+                <tbody>
+                {customers.map((customer) => (
+                    <tr key={customer.email}>
+                        <td>{customer.name}</td>
+                        <td>{customer.address}</td>
+                        <td>{customer.email}</td>
+                        <td>{customer.phone}</td>
 
+                    </tr>
+                ))}
+                </tbody>
+            </table>
         </div>
     );
 }
